@@ -1,6 +1,19 @@
 import React from "react";
 import { Typography, Button, Box, Paper } from "@mui/material/";
 function Navbar(props) {
+  const { ethers } = require("ethers");
+  const connectToMetamask = async()=>{
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner()
+      return signer
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  //useEffect(connectToMetamask,[connectToMetamask])
   return (
     <>
       <Box>
@@ -20,7 +33,7 @@ function Navbar(props) {
             </Typography>
           </Box>
           <Box>
-            <Button size="large" variant="text">
+            <Button onClick={connectToMetamask} size="large" variant="text">
               connect
             </Button>
           </Box>
