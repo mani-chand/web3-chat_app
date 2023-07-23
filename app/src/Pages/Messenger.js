@@ -34,7 +34,7 @@ function Messenger() {
             <Box height={500}>
               <Profile />
             </Box>
-            <Box borderRight="1px solid red" height={500}></Box>
+            <Box height={500}></Box>
             <Box>
               <Chat />
             </Box>

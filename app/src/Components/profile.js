@@ -1,32 +1,21 @@
-import React, { useEffect, useState } from "react";
-import ABI from "./../Asserts/ABI.json";
+import React, { useEffect} from "react";
 import { Card, CardContent, Typography, Box, Tabs } from "@mui/material";
-
+import { useSelector,useDispatch } from "react-redux/";
+import { fetchUsers } from "../store/userSlice";
 function Profile(props) {
-  const address = "0x6da6e08D08393165656479F49D509e0FF65298cE";
-  const { ethers } = require("ethers");
-  const [users, setUsers] = useState(null);
+  const dispatch = useDispatch()
   useEffect(() => {
-    async function handleSubmit() {
-      try {
-        let signer = null;
-        let provider;
-        if (window.ethereum == null) {
-          provider = ethers.getDefaultProvider();
-        } else {
-          provider = new ethers.BrowserProvider(window.ethereum);
-          signer = await provider.getSigner();
-        }
-        const create = new ethers.Contract(address, ABI, signer);
-        let result = await create.getAllUsers();
-        setUsers(result);
-        //console.log(JSON.stringify(result));
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    handleSubmit();
-  }, [ethers]);
+    dispatch(fetchUsers())
+  }, [dispatch]);
+  const contents = useSelector((state) => state.users.allUsers)
+  const isLoading = useSelector((state) => state.users.isLoading)
+  const error = useSelector((state) => state.users.error)
+  if(isLoading){
+    return "Loading..."
+  }
+  if (error) {
+    return error
+  }
   return (
     <Box
       sx={{
@@ -42,10 +31,11 @@ function Profile(props) {
         variant="scrollable"
         style={{ width: "250px" }}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
+        sx={{ borderRight: 3, borderColor: "divider" }}
       >
-        {users
-          ? users.map((user) => {
+        <Typography style={{display:"flex",justifyContent:"space-around"}} width={300} borderBottom={3} variant="h4">USERS</Typography>
+        {contents
+          ? contents.map((user) => {
               return (
                 <Card
                   onClick={() => {

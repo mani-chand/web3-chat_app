@@ -8,7 +8,6 @@ function Navbar(props) {
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner()
       return signer
-      
     } catch (error) {
       console.log(error)
     }
