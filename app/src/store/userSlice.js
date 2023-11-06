@@ -5,7 +5,7 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-const address = "0x6da6e08D08393165656479F49D509e0FF65298cE";
+const address = "0x28CaDE23ADe86018Af03c48A54293F5720C9437D";
 const { ethers } = require("ethers");
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",

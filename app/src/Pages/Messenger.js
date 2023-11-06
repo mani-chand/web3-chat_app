@@ -27,14 +27,16 @@ function Messenger() {
           <Box
             style={{
               display: "grid",
-              gridTemplateColumns: "4fr 1fr 36fr",
+              gridTemplateColumns: "4fr 36fr",
               gap: "5px",
             }}
+            sx = {{ display: "grid",
+            gridTemplateColumns: "4fr 36fr",
+            gap: "5px",}}
           >
             <Box height={500}>
-              <Profile />
+              <Profile/>
             </Box>
-            <Box height={500}></Box>
             <Box>
               <Chat />
             </Box>

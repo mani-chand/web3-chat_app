@@ -3,7 +3,7 @@ import { Paper, TextField, Typography, Box, Button } from "@mui/material/";
 import Navbar from "../Components/navbar";
 import ABI from "./../Asserts/ABI.json";
 export default function Auth() {
-  const address = "0x6da6e08D08393165656479F49D509e0FF65298cE";
+  const address = "0x28CaDE23ADe86018Af03c48A54293F5720C9437D";
   const { ethers } = require("ethers");
   const [user, setUser] = useState({
     username: "",

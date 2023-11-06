@@ -1,5 +1,5 @@
 import React, { useEffect} from "react";
-import { Card, CardContent, Typography, Box, Tabs } from "@mui/material";
+import { Card, CardContent, Typography,Button,Box, Tabs } from "@mui/material";
 import { useSelector,useDispatch } from "react-redux/";
 import { fetchUsers } from "../store/userSlice";
 function Profile(props) {
@@ -39,12 +39,16 @@ function Profile(props) {
               return (
                 <Card
                   onClick={() => {
-                    console.log(user);
+                    localStorage.setItem("chat",JSON.stringify(user))
                   }}
                   style={{ marginTop: "5px" }}
                 >
                   <CardContent>
-                    <Typography variant="h5">{user}</Typography>
+                    <Typography variant="h5">
+                    <Button onClick={()=>{console.log(user);}}>
+                      {user}
+                      </Button>  
+                    </Typography>
                   </CardContent>
                 </Card>
               );
